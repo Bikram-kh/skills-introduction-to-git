@@ -294,12 +294,15 @@ function matchesPattern(startRow, startCol) {
   return true;
 }
 
-// Clear matched pattern
+// Clear matched pattern (clear only the 5x5 matched area)
 function clearPattern(startRow, startCol) {
-  // Clear all blocks on the board
-  for (let row = 0; row < ROWS; row++) {
-    for (let col = 0; col < COLS; col++) {
-      board[row][col] = 0;
+  for (let row = 0; row < PATTERN_SIZE; row++) {
+    for (let col = 0; col < PATTERN_SIZE; col++) {
+      const r = startRow + row;
+      const c = startCol + col;
+      if (r >= 0 && r < ROWS && c >= 0 && c < COLS) {
+        board[r][c] = 0;
+      }
     }
   }
 }
